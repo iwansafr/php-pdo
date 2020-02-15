@@ -33,12 +33,19 @@ class connection{
 
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$data = $stmt->fetchAll();
+			$stmt = null;
 			return $data;
 		}
 	}
-	public function insert($q = ''){
+	public function save($q = '', $data = array()){
 		if(!empty($q)){
-			$this->conn->exec($q);
+			$stmt = $this->conn->prepare($q);
+			if(!empty($data))
+			{
+				$stmt->execute($data);
+			}else{
+				$stmt->execute();
+			}
 		}
 	}
 

@@ -1,6 +1,9 @@
 <h1>Content List</h1>
 
 <?php if (!empty($data)): ?>
+	<form action="" method="get">
+		<input type="text" name="keyword" placeholder="cari">
+	</form>
 	<table border="1">
 		<tr>
 			<td>id</td>

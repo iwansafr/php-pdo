@@ -21,10 +21,15 @@ class connection{
 			echo $e->getMessage();die();
 		}
 	}
-	public function query($q = ''){
+	public function query($q = '',$data = array()){
 		if(!empty($q)){
 			$stmt = $this->conn->prepare($q);
-			$stmt->execute();
+			if(!empty($data))
+			{
+				$stmt->execute($data);
+			}else{
+				$stmt->execute();
+			}
 
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 			$data = $stmt->fetchAll();
